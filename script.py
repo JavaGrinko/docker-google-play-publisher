@@ -8,10 +8,10 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 TRACK = 'internal'
 
-PACKAGE_NAME = os.environ['_PACKAGE_NAME']
-SERVICE_ACCOUNT_EMAIL = os.environ['_SERVICE_ACCOUNT_EMAIL']
-KEY_FILE_PATH = os.environ['_KEY_FILE_PATH'] or "/key.p12"
-APK_FILE_PATH = os.environ['_APK_FILE_PATH'] or "/app-release.apk"
+PACKAGE_NAME = os.environ['PACKAGE_NAME']
+SERVICE_ACCOUNT_EMAIL = os.environ['SERVICE_ACCOUNT_EMAIL']
+KEY_FILE_PATH = os.environ['KEY_FILE_PATH'] or "/key.p12"
+APK_FILE_PATH = os.environ['APK_FILE_PATH'] or "/app-release.apk"
 
 def main():
     # Create an httplib2.Http object to handle our HTTP requests and authorize it
