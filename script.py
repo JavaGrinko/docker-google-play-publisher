@@ -10,7 +10,8 @@ TRACK = 'internal'
 
 PACKAGE_NAME = os.environ['_PACKAGE_NAME']
 SERVICE_ACCOUNT_EMAIL = os.environ['_SERVICE_ACCOUNT_EMAIL']
-
+KEY_FILE_PATH = os.environ['_KEY_FILE_PATH'] or "/key.p12"
+APK_FILE_PATH = os.environ['_APK_FILE_PATH'] or "/app-release.apk"
 
 def main():
     # Create an httplib2.Http object to handle our HTTP requests and authorize it
@@ -19,7 +20,7 @@ def main():
     # address associated with the key that was created.
     credentials = ServiceAccountCredentials.from_p12_keyfile(
         SERVICE_ACCOUNT_EMAIL,
-        'key.p12',
+        KEY_FILE_PATH,
         scopes=['https://www.googleapis.com/auth/androidpublisher'])
     http = httplib2.Http()
     http = credentials.authorize(http)
@@ -28,7 +29,7 @@ def main():
 
     # Process flags and read their values.
     package_name = PACKAGE_NAME
-    bundle_file = '/app-release.apk'
+    bundle_file = APK_FILE_PATH
 
     try:
         edit_request = service.edits().insert(body={}, packageName=package_name)
